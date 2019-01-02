@@ -1,0 +1,13 @@
+resolver: lts-13.1
+packages:
+  - '.'
+  - location:
+      git: https://github.com/eskimor/purescript-bridge
+      commit: cb00f5e746a05d06eb32001e4579af64c29d567b # [master] generics-rep fixes for purescript 0.12
+    extra-dep: true
+extra-deps: []
+flags: {}
+
+extra-package-dbs: []
+
+

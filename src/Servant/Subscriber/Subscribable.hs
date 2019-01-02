@@ -5,6 +5,7 @@
 {-# LANGUAGE KindSignatures        #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE OverloadedStrings     #-}
+{-# LANGUAGE PolyKinds             #-}
 {-# LANGUAGE ScopedTypeVariables   #-}
 {-# LANGUAGE TypeFamilies          #-}
 {-# LANGUAGE TypeOperators         #-}
@@ -79,6 +80,7 @@ type family IsValidEndpoint endpoint :: Constraint where
 instance HasServer sublayout context => HasServer (Subscribable :> sublayout) context where
   type ServerT (Subscribable :> sublayout) m = ServerT sublayout m
   route _ = route (Proxy :: Proxy sublayout)
+  hoistServerWithContext _ ctx = hoistServerWithContext (Proxy :: Proxy sublayout) ctx
 
 
 instance HasForeign lang ftype sublayout => HasForeign lang ftype (Subscribable :> sublayout) where
